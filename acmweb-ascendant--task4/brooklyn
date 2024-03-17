@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Fun Quotes</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+            background-color: #677db8;
+        }
+        #quote-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <h1>Random Fun Quotes</h1>
+    <div id="quote-container">
+        <p id="quote-text">Click the button to get a random quote!</p>
+        <button onclick="getRandomQuote()">Get Quote</button>
+    </div>
+
+    <script>
+        function getRandomQuote() {
+            // Replace this URL with the API endpoint of your choice
+            const apiUrl = 'https://ron-swanson-quotes.herokuapp.com/v2/quotes';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                    const quoteText = data[0];
+                    document.getElementById('quote-text').innerText = `"${quoteText}"`;
+                })
+                .catch(error => console.error('Error fetching quote:', error));
+        }
+    </script>
+</body>
+</html>
